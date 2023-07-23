@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SnakeController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float velocity;
+    //public Rigidbody snakeRB;
+
     void Start()
     {
         
@@ -13,6 +15,13 @@ public class SnakeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(Vector3.up * velocity * Time.deltaTime);
+        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            transform.Rotate(0,0,90);
+        } else if (Input.GetKeyDown(KeyCode.RightArrow)) 
+        {
+            transform.Rotate(0, 0, -90);
+        }
     }
 }
