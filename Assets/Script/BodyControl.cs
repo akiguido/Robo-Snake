@@ -6,25 +6,36 @@ public class BodyControl : MonoBehaviour
 {
     //public static int numberInstance;
     public static int numberInstance;
-    public GameObject Head;
+    public GameObject Parent;
     private float enunerate;
     private Vector3 bodyOffset;
-    void Start()
+    void Awake()
     {
+        bodyOffset = new Vector3(0, 0, 0.21f);
+        SceneController.LastParent = gameObject;
+
         numberInstance++;
-        enunerate = numberInstance;
-        bodyOffset = new Vector3(0.21f * enunerate, 0 , 0);
-        Head = GameObject.Find("Head");
-        transform.rotation = Head.transform.rotation;
+        print(numberInstance);
+        //enunerate = numberInstance;
+        Parent = SceneController.LastParent;
+        gameObject.transform.SetParent(Parent.transform);
+        transform.position += bodyOffset;
         
+        
+        //Head = GameObject.Find("Head");
+        transform.rotation = Parent.transform.rotation;
+        SceneController.LastParent = gameObject;
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Head.transform.rotation;
-        transform.position = Head.transform.position + bodyOffset;
+        
+        transform.rotation = Parent.transform.rotation ;
 
+        transform.position = Parent.transform.position; //- bodyOffset;
+        
+        //transform.position = GetComponentInParent<Transform>().position + bodyOffset;
     }
 }

@@ -5,11 +5,14 @@ using UnityEngine;
 public class SnakeController : MonoBehaviour
 {
     public float velocity;
+    public GameObject BodySnake;
+
+
     //public Rigidbody snakeRB;
 
     void Start()
     {
-        
+        SceneController.LastParent = gameObject;
     }
 
     // Update is called once per frame
@@ -22,6 +25,11 @@ public class SnakeController : MonoBehaviour
         } else if (Input.GetKeyDown(KeyCode.RightArrow)) 
         {
             transform.Rotate(0, 0, -90);
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(BodySnake,SceneController.LastParent.transform);
+            //Instantiate(BodySnake);
         }
     }
 }
