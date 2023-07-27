@@ -12,7 +12,7 @@ public class BodyControl : MonoBehaviour
     private Vector3 bodyOffset;
 
     public float velocityChase;
-    public float distanceTail = 0.22f;
+    public float distanceTail = 0.23f;
 
     public int GetInstance()
     {
